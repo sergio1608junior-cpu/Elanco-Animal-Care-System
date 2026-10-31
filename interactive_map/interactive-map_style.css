@@ -1,0 +1,288 @@
+  <style>
+    /* ==========================================================================
+       1. BASE & RESET STYLES
+       ========================================================================== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #09120e;
+      color: #e5e7eb;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    :focus-visible { outline: 3px solid #fcd34d; outline-offset: 2px; }
+
+    .skip-link {
+      position: absolute; left: -999px; top: 8px;
+      background: #10b981; color: #09120e; padding: 8px 14px;
+      border-radius: 6px; z-index: 2000; font-weight: 700;
+    }
+    .skip-link:focus { left: 8px; }
+
+    /* ==========================================================================
+       2. TOP HEADER & NAVIGATION
+       ========================================================================== */
+    header {
+      height: 80px;
+      background: #0d1a14;
+      border-bottom: 2px solid #162e22;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .brand-logo {
+      border: 2px solid #10b981;
+      padding: 8px 18px;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: #10b981;
+      border-radius: 4px;
+      transform: skew(-10deg);
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    .top-nav ul {
+      display: flex;
+      list-style: none;
+      gap: 16px;
+      background: #11221a;
+      padding: 8px;
+      border: 1px solid #1a382b;
+      border-radius: 8px;
+    }
+
+    .top-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #9ca6b8;
+      transition: all 0.2s ease;
+    }
+
+    .top-nav a .nav-num {
+      background: #1a382b;
+      color: #10b981;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .top-nav a:hover, .top-nav a.active {
+      background: #059669;
+      color: #fff;
+    }
+
+    .top-nav a:hover .nav-num, .top-nav a.active .nav-num {
+      background: #fff;
+      color: #059669;
+    }
+
+    /* ==========================================================================
+       3. MAIN LAYOUT STRUCTURE
+       ========================================================================== */
+    main {
+      flex: 1;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 20px;
+      height: calc(100vh - 80px);
+      min-height: 620px;
+    }
+
+    .map-column {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 0;
+    }
+
+    .map-container {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      border: 2px solid #1a382b;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      min-height: 500px;
+      background: #0e1e17;
+      z-index: 1;
+    }
+
+    .map-legend {
+      position: absolute;
+      left: 12px;
+      bottom: 24px;
+      z-index: 500;
+      background: rgba(13, 26, 20, 0.92);
+      border: 1px solid #1a382b;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #9ca6b8;
+      display: grid;
+      gap: 6px;
+      max-width: 220px;
+    }
+
+    .map-legend b { color: #10b981; font-size: 12px; }
+    .legend-row { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; }
+    .legend-dot {
+      display: inline-block; width: 11px; height: 11px;
+      border-radius: 50%; margin-right: 4px; border: 2px solid transparent;
+    }
+
+    .pin-wrapper { background: none; border: 0; }
+    .pin-marker {
+      display: block; border-radius: 50%; border: 3px solid;
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.45); transition: transform 0.15s;
+    }
+    .pin-wrapper:hover .pin-marker, .pin-wrapper:focus .pin-marker {
+      transform: scale(1.25);
+    }
+
+    @keyframes pulse-animation {
+      0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+      100% { box-shadow: 0 0 0 14px rgba(255,255,255,0); }
+    }
+    .pulse-pin .pin-marker { animation: pulse-animation 1.8s infinite; }
+
+    /* ==========================================================================
+       4. TIMELINE PLAYBACK BAR
+       ========================================================================== */
+    .timeline-bar {
+      background: #0e1e17;
+      border: 2px solid #1a382b;
+      border-radius: 14px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    #btn-play {
+      flex: none; width: 46px; height: 46px; border-radius: 50%;
+      border: 2px solid #10b981; background: #11221a; color: #10b981;
+      font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s;
+    }
+    #btn-play:hover, #btn-play[aria-pressed="true"] { background: #10b981; color: #09120e; }
+
+    .timeline-slider-wrap { flex: 1; display: grid; gap: 4px; }
+    .timeline-slider-wrap label { font-size: 12px; font-weight: 600; color: #9ca6b8; }
+    #timeline-slider { width: 100%; accent-color: #10b981; }
+
+    #timeline-date-label {
+      flex: none; min-width: 110px; text-align: right;
+      font-weight: 700; color: #10b981; font-size: 14px;
+    }
+
+    /* ==========================================================================
+       5. RIGHT SIDEBAR
+       ========================================================================== */
+    aside {
+      background: #0e1e17;
+      border: 2px solid #1a382b;
+      border-radius: 14px;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    aside h2 {
+      font-size: 16px; color: #10b981;
+      border-bottom: 1px solid #1a382b; padding-bottom: 8px; margin-bottom: 12px;
+    }
+
+    #data-source-badge {
+      font-size: 12px; font-weight: 600; padding: 6px 10px;
+      border-radius: 6px; border: 1px solid #1a382b; background: #11221a; color: #9ca6b8;
+    }
+    #data-source-badge.live { color: #6ee7b7; border-color: #10b981; }
+    #data-source-badge.demo { color: #fcd34d; border-color: #f59e0b; }
+
+    #sightings-count { font-size: 13px; color: #9ca6b8; margin-top: 8px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+    .form-group label { font-size: 12px; font-weight: 600; color: #9ca6b8; text-transform: uppercase; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .form-control {
+      background: #11221a; border: 1px solid #1a382b; color: #fff;
+      padding: 9px 12px; border-radius: 6px; font-size: 13px; width: 100%; color-scheme: dark;
+    }
+    .form-control:focus { border-color: #10b981; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 10px 14px; border-radius: 6px; font-size: 13px; font-weight: 700;
+      cursor: pointer; border: 1px solid #1a382b; background: #11221a; color: #10b981; transition: all 0.2s;
+    }
+    .btn:hover { background: #10b981; color: #09120e; border-color: #10b981; }
+    .btn.primary { background: linear-gradient(135deg, #10b981, #047857); color: #fff; border: 0; }
+    .btn.primary:hover { opacity: 0.9; color: #fff; }
+
+    #detail-box {
+      display: none; background: #11221a; border: 1px solid #10b981;
+      border-radius: 10px; padding: 16px;
+    }
+    #detail-box.open { display: block; }
+    #detail-box .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    #detail-box h3 { font-size: 17px; color: #e5e7eb; }
+    #detail-box dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 13px; margin: 12px 0; }
+    #detail-box dt { color: #9ca6b8; }
+
+    .severity-pill { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; color: #09120e; }
+    .detail-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+    .close-btn { background: none; border: 0; color: #9ca6b8; font-size: 22px; cursor: pointer; line-height: 1; }
+    .close-btn:hover { color: #fff; }
+
+    #histogram-bars {
+      display: flex; align-items: flex-end; gap: 3px; height: 110px;
+      border-bottom: 1px solid #1a382b; padding-bottom: 2px;
+    }
+    #histogram-bars i { flex: 1; background: #059669; border-radius: 3px 3px 0 0; min-height: 2px; }
+    #histogram-bars i:hover { background: #10b981; }
+
+    .histogram-axis { display: flex; justify-content: space-between; font-size: 11px; color: #9ca6b8; margin-top: 4px; }
+    #timeline-caption { font-size: 12px; color: #9ca6b8; margin-bottom: 8px; }
+
+    #toast-notification {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      background: #10b981; color: #09120e; padding: 10px 18px; border-radius: 30px;
+      font-weight: 700; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 3000;
+    }
+    #toast-notification.show { opacity: 1; }
+
+    @media (max-width: 1000px) {
+      main { grid-template-columns: 1fr; height: auto; }
+      .map-container { min-height: 420px; }
+      header { flex-direction: column; height: auto; padding: 16px; gap: 12px; }
+    }
+  </style>
