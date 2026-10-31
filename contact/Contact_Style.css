@@ -1,0 +1,259 @@
+   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #09120e;
+      color: #e5e7eb;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ============ TOP HEADER (GREEN HEADER) ============ */
+    header {
+      height: 80px;
+      background: #0d1a14;
+      border-bottom: 2px solid #162e22;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .brand-logo {
+      border: 2px solid #10b981;
+      padding: 8px 18px;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: #10b981;
+      border-radius: 4px;
+      transform: skew(-10deg);
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    /* Navigation Menu (Button 3 Active) */
+    .top-nav ul {
+      display: flex;
+      list-style: none;
+      gap: 16px;
+      background: #11221a;
+      padding: 8px;
+      border: 1px solid #1a382b;
+      border-radius: 8px;
+    }
+
+    .top-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #9ca6b8;
+      transition: all 0.2s ease;
+    }
+
+    .top-nav a .nav-num {
+      background: #1a382b;
+      color: #10b981;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .top-nav a:hover, .top-nav a.active {
+      background: #059669;
+      color: #fff;
+    }
+
+    .top-nav a:hover .nav-num, .top-nav a.active .nav-num {
+      background: #fff;
+      color: #059669;
+    }
+
+    /* ============ SPLIT LAYOUT FIFTY-FIFTY (SPLIT 50/50) ============ */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      width: 90%;
+      margin: 30px auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Split exactly in half */
+      gap: 30px;
+    }
+
+    .panel-card {
+      background: #0e1e17;
+      border: 2px solid #1a382b;
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #10b981;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #1a382b;
+      padding-bottom: 12px;
+    }
+
+    /* ============ LEFT SIDE: CONTACT INFO & HOURS ============ */
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #11221a;
+      padding: 14px 18px;
+      border-radius: 8px;
+      border: 1px solid #1a382b;
+    }
+
+    .contact-item i {
+      font-size: 18px;
+      color: #10b981;
+      width: 24px;
+      text-align: center;
+    }
+
+    .contact-item a {
+      font-weight: 600;
+      color: #e5e7eb;
+      transition: color 0.2s;
+    }
+
+    .contact-item a:hover { color: #10b981; }
+
+    .hours-box {
+      background: #11221a;
+      border: 1px solid #1a382b;
+      border-radius: 8px;
+      padding: 18px;
+      margin-top: auto;
+    }
+
+    .hours-box h4 {
+      font-size: 14px;
+      color: #10b981;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .hours-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+      color: #9ca6b8;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed #1a382b;
+      padding-bottom: 4px;
+    }
+
+    .hours-row .day { font-weight: 600; color: #d1d5db; }
+    .hours-row .off { color: #ef4444; font-weight: 600; }
+
+    /* ============ RIGHT SIDE: FORM-REPORT ============ */
+    .report-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #9ca6b8;
+      text-transform: uppercase;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-control {
+      background: #11221a;
+      border: 1px solid #1a382b;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-control:focus {
+      border-color: #10b981;
+    }
+
+    /* Validation Messages */
+    #form-feedback {
+      display: none;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .feedback-error { background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #fca5a5; }
+    .feedback-warning { background: rgba(245, 158, 11, 0.15); border: 1px solid #f59e0b; color: #fcd34d; }
+    .feedback-success { background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #6ee7b7; }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #10b981, #047857);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+      transition: opacity 0.2s ease;
+    }
+
+    .btn-submit:hover { opacity: 0.9; }
+
+    /* Responsiveness for smaller screens */
+    @media (max-width: 850px) {
+      main { grid-template-columns: 1fr; }
+    }
