@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Elanco - Species Guide</title>
+	
+	<!-- Chart.js for data visualization -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	<link rel="stylesheet" href="species_guide/Species_Style.css">
+	<script src="species_guide/Species_guide.js"></script>
+
+	
+</head>
+<body>
+
+  <header role="banner">
+    <div class="brand-logo" aria-label="Elanco Logo">ELANCO</div>
+    <nav class="top-nav" aria-label="Main Navigation">
+      <ul>
+        <li>
+          <a href="Interactive Map.html">
+            <span class="nav-num">1</span> Interactive Map
+          </a>
+        </li>
+        <li>
+          <a href="Species Guide.html">
+            <span class="nav-num">2</span> Species Guide
+          </a>
+        </li>
+        <li>
+          <a href="Contact.html">
+            <span class="nav-num">3</span> Contact Us
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <h1 class="welcome-title">Elanco <span class="platform-name">Species Guide</span></h1>
+
+    <div class="conent-grid">
+      <!-- COLUMN 1: SPECIES BUTTONS -->
+      <div class="content-column">
+        <button class="btn-sidebar active" data-species="Passerine tick">Passerine tick</button>
+        <button class="btn-sidebar" data-species="Southern rodent tick">Southern rodent tick</button>
+        <button class="btn-sidebar" data-species="Marsh tick">Marsh tick</button>
+        <button class="btn-sidebar" data-species="Tree-hole tick">Tree-hole tick</button>
+        <button class="btn-sidebar" data-species="Fox/badger tick">Fox/badger tick</button>
+      </div>
+
+      <!-- COLUMN 2: SPECIES GUIDE DATA -->
+      <div class="content-column">
+        <article id="species-info">
+          <h3 id="species-title">Passerine tick (Dermacentor frontalis)</h3>
+          <p><strong>Primary Hosts:</strong> Passerine birds, wild mammals, dogs</p>
+          <p><strong>Habitat:</strong> Woodlands, hedgerows, scrubby vegetation</p>
+          <p><strong>Prevention Tips:</strong> Regular anti-parasitic treatment, check pet coats after walks.</p>
+        </article>
+      </div>
+
+      <!-- COLUMN 3: ACTIVITY CHART (STANDALONE) -->
+      <div class="content-column">
+        <div class="Activity-chart">
+          <article>
+            <div class="chart-header">
+              <span class="chart-title" id="chart-heading">Annual Sightings Growth</span>
+              <div class="chart-controls">
+                <button class="btn-toggle active" data-mode="annual">Annual</button>
+                <button class="btn-toggle" data-mode="seasonal">Seasonal</button>
+              </div>
+            </div>
+            
+            <div class="chart-container">
+              <canvas id="tickChart"></canvas>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</body>
+</html>

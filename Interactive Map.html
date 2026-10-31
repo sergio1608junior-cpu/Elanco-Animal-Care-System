@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elanco — Interactive Map</title>
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+
+  <link rel="stylesheet" href="interactive_map/interactive-map_style.css">
+  <script src="interactive_map/interactive-map.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  
+</head>
+<body>
+
+  <a class="skip-link" href="#map">Skip to map</a>
+
+  <!-- PAGE HEADER -->
+  <header role="banner">
+    <div class="brand-logo" aria-label="Elanco Logo">ELANCO</div>
+    <nav class="top-nav" aria-label="Main Navigation">
+      <ul>
+        <li>
+          <a href="Interactive Map.html">
+            <span class="nav-num">1</span> Interactive Map
+          </a>
+        </li>
+        <li>
+          <a href="Species Guide.html">
+            <span class="nav-num">2</span> Species Guide
+          </a>
+        </li>
+        <li>
+          <a href="Contact.html">
+            <span class="nav-num">3</span> Contact Us
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN APP CONTAINER -->
+  <main role="main">
+
+    <!-- LEFT SECTION -->
+    <section class="map-column" aria-label="Tick sighting map">
+      <div class="map-container">
+        <div id="map" role="application" aria-label="Map of tick sightings across the UK"></div>
+        
+        <div class="map-legend" aria-label="Map legend">
+          <b>Marker colour = severity</b>
+          <div class="legend-row">
+            <span><span class="legend-dot" style="background:#10b981"></span>Low</span>
+            <span><span class="legend-dot" style="background:#f59e0b"></span>Medium</span>
+            <span><span class="legend-dot" style="background:#ef4444"></span>High</span>
+          </div>
+          <b>Ring = species</b>
+          <div class="legend-row" id="legend-species-list"></div>
+          <b>Size = age</b>
+          <div>Large & pulsing: last 7 days. Medium: last 30 days. Small: older.</div>
+        </div>
+      </div>
+
+      <div class="timeline-bar">
+        <button id="btn-play" type="button" aria-pressed="false" aria-label="Play timeline in auto mode">&#9654;</button>
+        <div class="timeline-slider-wrap">
+          <label for="timeline-slider">Timeline: drag to see sightings build up over time</label>
+          <input type="range" id="timeline-slider" min="0" max="0" value="0">
+        </div>
+        <div id="timeline-date-label" aria-live="off">—</div>
+      </div>
+    </section>
+
+    <!-- RIGHT SECTION -->
+    <aside aria-label="Filters and sighting details">
+      <div>
+        <span id="data-source-badge" role="status">Loading data…</span>
+        <p id="sightings-count" aria-live="polite"></p>
+      </div>
+
+      <section aria-labelledby="filter-heading">
+        <h2 id="filter-heading">Filters</h2>
+        
+        <div class="form-group">
+          <label for="filter-city">UK City</label>
+          <select id="filter-city" class="form-control">
+            <option value="">All of the UK</option>
+          </select>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="filter-date-from">From</label>
+            <input type="date" id="filter-date-from" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="filter-date-to">To</label>
+            <input type="date" id="filter-date-to" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="filter-species">Species</label>
+          <select id="filter-species" class="form-control">
+            <option value="">All species</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="filter-severity">Severity</label>
+          <select id="filter-severity" class="form-control">
+            <option value="">All levels</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+
+        <button type="button" class="btn" id="btn-reset-filters">Reset filters</button>
+      </section>
+
+      <section id="detail-box" aria-labelledby="detail-heading" tabindex="-1"></section>
+
+      <section aria-labelledby="timeline-heading">
+        <h2 id="timeline-heading">Timeline View</h2>
+        <p id="timeline-caption"></p>
+        <div id="histogram-bars" role="img" aria-label="Monthly sightings bar chart"></div>
+        <div class="histogram-axis">
+          <span id="axis-start-date"></span>
+          <span id="axis-end-date"></span>
+        </div>
+      </section>
+    </aside>
+
+  </main>
+
+  <div id="toast-notification" role="status" aria-live="polite"></div>
+</body>
+</html>

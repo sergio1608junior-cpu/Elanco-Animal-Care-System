@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elanco — Contact & Report Sighting</title>
+  
+  	<link rel="stylesheet" href="contact/Contact_Style.css">
+	<script src="contact/Contact.js"></script>
+	
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header role="banner">
+    <div class="brand-logo" aria-label="Elanco Logo">ELANCO</div>
+    <nav class="top-nav" aria-label="Main Navigation">
+      <ul>
+        <li>
+          <a href="Interactive Map.html">
+            <span class="nav-num">1</span> Interactive Map
+          </a>
+        </li>
+        <li>
+          <a href="Species Guide.html">
+            <span class="nav-num">2</span> Species Guide
+          </a>
+        </li>
+        <li>
+          <a href="Contact.html">
+            <span class="nav-num">3</span> Contact Us
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN: 50 / 50 SPLIT STRUCTURE -->
+  <main role="main">
+
+    <!-- LEFT SIDE: CONTACT AND HOURS -->
+    <section class="panel-card" aria-labelledby="contact-heading">
+      <h2 class="panel-title" id="contact-heading">
+        <i class="fas fa-headset" aria-hidden="true"></i> Contact Information
+      </h2>
+
+      <div class="contact-list">
+        <div class="contact-item">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <a href="mailto:sergio.1608.junior@gmail.com">sergio.1608.junior@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone" aria-hidden="true"></i>
+          <a href="tel:+447375616399">+44 7375616399</a>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+          <a href="https://www.instagram.com/sergiojunior7725/" target="_blank" rel="noopener">@sergiojunior7725</a>
+        </div>
+      </div>
+
+      <div class="hours-box">
+        <h4><i class="fas fa-clock" aria-hidden="true"></i> Support Hours (UK Time)</h4>
+        <div class="hours-list">
+          <div class="hours-row"><span class="day">Monday</span><span>09:00 - 18:00</span></div>
+          <div class="hours-row"><span class="day">Tuesday</span><span>09:00 - 18:00</span></div>
+          <div class="hours-row"><span class="day">Wednesday</span><span>09:00 - 18:00</span></div>
+          <div class="hours-row"><span class="day">Thursday</span><span>09:00 - 18:00</span></div>
+          <div class="hours-row"><span class="day">Friday</span><span>09:00 - 18:00</span></div>
+		  <div class="hours-row"><span class="day">Saturday</span><span class="off">OFF</span></div>
+		  <div class="hours-row"><span class="day">Sunday</span><span class="off">OFF</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT SIDE: REPORTING FORM (FORM-REPORT) -->
+    <section class="panel-card" aria-labelledby="report-heading">
+      <h2 class="panel-title" id="report-heading">
+        <i class="fas fa-bug" aria-hidden="true"></i> Report a Sighting Form
+      </h2>
+
+      <!-- Validation Feedback Box (Error / Warning / Success Messages) -->
+      <div id="form-feedback" role="alert" aria-live="polite"></div>
+
+      <form class="report-form" id="sightingForm" onsubmit="handleFormSubmit(event)">
+        
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="sighting-date">Date</label>
+            <input type="date" id="sighting-date" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="sighting-time">Time</label>
+            <input type="time" id="sighting-time" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="sighting-location">UK Location / City</label>
+          <input type="text" id="sighting-location" class="form-control" placeholder="e.g. Liverpool, Merseyside" required>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="sighting-species">Species Identified</label>
+            <select id="sighting-species" class="form-control" required>
+              <option value="">Select species...</option>
+              <option value="Ixodes ricinus">Passerine tick)</option>
+			  <option value="Ixodes ricinus">Southern rodent tick</option>
+              <option value="Ixodes hexagonus">Marsh tick</option>
+              <option value="Dermacentor reticulatus">Tree-hole tick)</option>
+			  <option value="Dermacentor reticulatus">Fox/badger tick)</option>
+              <option value="Unknown">Unknown / Not sure</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sighting-severity">Severity Level</label>
+            <select id="sighting-severity" class="form-control" required>
+              <option value="Low">Low Risk</option>
+              <option value="Medium">Medium Risk</option>
+              <option value="High">High Risk</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="sighting-image">Upload Image Proof</label>
+          <input type="file" id="sighting-image" class="form-control" accept="image/*">
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <i class="fas fa-paper-plane" aria-hidden="true"></i> Submit Report
+        </button>
+      </form>
+    </section>
+
+  </main>
+
+</body>
+</html>
