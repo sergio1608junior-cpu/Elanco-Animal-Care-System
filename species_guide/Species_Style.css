@@ -1,0 +1,251 @@
+	<style>
+/* ============ RESET & BASE STYLES ============ */
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #09120e;
+  color: #e5e7eb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { 
+  text-decoration: none; 
+  color: inherit; 
+}
+
+/* ============ HEADER (ELANCO GREEN) ============ */
+header {
+  height: 80px;
+  background: #0d1a14;
+  border-bottom: 2px solid #162e22;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+.brand-logo {
+  border: 2px solid #10b981;
+  padding: 8px 18px;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: #10b981;
+  border-radius: 4px;
+  transform: skew(-10deg);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.top-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 16px;
+  background: #11221a;
+  padding: 8px;
+  border: 1px solid #1a382b;
+  border-radius: 8px;
+}
+
+.top-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #9ca6b8;
+  transition: all 0.2s ease;
+}
+
+.top-nav a .nav-num {
+  background: #1a382b;
+  color: #10b981;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.top-nav a:hover,
+.top-nav a.active {
+  background: #059669;
+  color: #fff;
+}
+
+.top-nav a:hover .nav-num,
+.top-nav a.active .nav-num {
+  background: #fff;
+  color: #059669;
+}
+
+/* ============ MAIN CONTENT ============ */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 40px;
+  position: relative;
+  width: 100%;
+}
+
+.welcome-title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.welcome-title .platform-name {
+  color: #10b981;
+  border-bottom: 2px solid #10b981;
+  padding-bottom: 4px;
+}
+
+/* ============ 3-COLUMN GRID LAYOUT ============ */
+.conent-grid {
+  display: grid;
+  gap: 24px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.content-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.content-column article {
+  background: #0d1a14;
+  border: 1px solid #1a382b;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.content-column article h3 {
+  color: #10b981;
+  font-size: 18px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #1a382b;
+  padding-bottom: 8px;
+}
+
+.content-column article p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #e5e7eb;
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+/* ============ SIDEBAR BUTTONS ============ */
+.btn-sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  background: #11221a;
+  color: #10b981;
+  border: 1px solid #1a382b;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-sidebar:hover,
+.btn-sidebar.active {
+  background: #10b981;
+  color: #09120e;
+  border-color: #10b981;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.3);
+}
+
+/* ============ ACTIVITY CHART CONTAINER ============ */
+.Activity-chart article {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chart-title {
+  color: #10b981;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.chart-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-toggle {
+  background: #11221a;
+  border: 1px solid #1a382b;
+  color: #9ca6b8;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-toggle.active,
+.btn-toggle:hover {
+  background: #059669;
+  color: #fff;
+  border-color: #10b981;
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 320px;
+}
+
+/* ============ RESPONSIVE MEDIA QUERIES ============ */
+@media (max-width: 1024px) {
+  .conent-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 850px) {
+  header {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+    gap: 16px;
+  }
+}
+	</style>
